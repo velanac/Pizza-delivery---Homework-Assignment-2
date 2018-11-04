@@ -49,8 +49,8 @@ node index.js
 	"city": "string"
 }
 ```
-**Success response :** 200
-**Success response data:**
+- **Success response :** 200
+- **Success response data:**
 ```
 {
     "email": "string",
@@ -110,9 +110,77 @@ http://localhost:3000/users?email=string@string.com
 - **Description** : Deletes user's file
 - **Required header data** : token
 - **Required query data** : email
-- **Success response** : 200
 - **Example request**
 ```
 http://localhost:3000/users?email=string@string.com
 ```
+- **Success response** : 200
 
+### /tokens
+#### post
+- **Description** : Creates a new token
+- **Required payload data** : email, password
+- **Required header data** : none
+- **Example payload**
+```
+{
+    'email':'string@string.com, 
+    'password':'string'
+}
+```
+- **Success response** : 200
+- **Success response data**
+```
+{
+    "email": "string@string.com",
+    "id": "string",
+    "expires": number (date time expires)
+}
+```
+#### get
+- **Description** : Returns token data
+- **Required query data** : id
+- **Required header data** : none
+- **Example request** 
+```
+http://localhost:3000/tokens?id="token-string"
+```
+- **Success response** : 200
+- **Success response data**
+```
+{
+    "email": "string@string.com",
+    "id": "string",
+    "expires": number (date time expires)
+}
+```
+#### put
+- **Description** : Extends expiration
+- **Required payload data** : id, extend
+- **Optional payload data** : none
+- **Required header data** : none
+- **Example payload**
+```
+{
+    "id": "srting", 
+    "extend": boolean
+}
+ ```
+- **Success response** : 200
+- **Success response data**
+```
+{
+    "email": "string@string.com",
+    "id": "string",
+    "expires": number (date time expires)
+}
+```
+#### delete
+- **Description** : Deletes token 
+- **Required query data** : id
+- **Required header data** : none
+- **Example request**
+```
+http://localhost:3000/tokens?id=token-string
+```
+- **Success response** : 200
