@@ -1,0 +1,4 @@
+*.json
+!.data/menu/*.json
+*.vscode
+*secret.js

@@ -1,0 +1,22 @@
+[
+    {
+        "name":"MARGARITA",
+        "description":"Tomato sauce and mozzarella",
+        "price": 10
+    },
+    {
+        "name":"VEGETARIANA",
+        "description":"Mozzarella, cultivated mushrooms, grilled vegetables",
+        "price": 12
+    },
+    {
+        "name":"CAPRICCIOSA",
+        "description":"Mozzarella, ham, cultivated mushrooms",
+        "price": 14
+    },
+    {
+        "name":"QUATTRO FORMAGGI",
+        "description":"Mozzarella, emmenthal, gorgonzola and piquant provolone cheeses",
+        "price": 17
+    }
+]
