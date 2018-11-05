@@ -23,7 +23,7 @@ const OrdersController = (data, callback) => {
 };
 
 // Post order
-// Required params: none
+// Required params: email, stripeToken
 // Optional params: none
 // Required header: token
 OrdersController.post = function(data, callback) {

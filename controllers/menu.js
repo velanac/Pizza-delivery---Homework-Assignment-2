@@ -26,11 +26,12 @@ const MenuController = (data, callback) => {
 MenuController.get = function(data, callback) {
     // Read token
     const token = _validators.string(data.headers.token,20);
+    const email = _validators.string(data.queryStringObject.email);
 
-    if (token) {
+    if (token && email) {
         // Check authorization
         const verifyToken = () => {
-            _data.verifyToken(token, undefined, (err) => {
+            _data.verifyToken(token, email, (err) => {
                 if (!err) {
                     // Read menu file
                     readMenuFile();

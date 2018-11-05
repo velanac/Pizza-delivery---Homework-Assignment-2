@@ -184,3 +184,201 @@ http://localhost:3000/tokens?id="token-string"
 http://localhost:3000/tokens?id=token-string
 ```
 - **Success response** : 200
+
+### menu
+#### get
+- **Description** : Return pizza menu list
+- **Required payload data** : email
+- **Required header data** : token
+- **Example request**
+```
+http://localhost:3000/menu?email=string@string.com
+```
+- **Success response** : 200
+- **Success response data**
+```
+[
+    {
+        "name": "MARGARITA",
+        "description": "Tomato sauce and mozzarella",
+        "price": 10
+    },
+    {
+        "name": "VEGETARIANA",
+        "description": "Mozzarella, cultivated mushrooms, grilled vegetables",
+        "price": 12
+    },
+    {
+        "name": "CAPRICCIOSA",
+        "description": "Mozzarella, ham, cultivated mushrooms",
+        "price": 14
+    },
+    {
+        "name": "QUATTRO FORMAGGI",
+        "description": "Mozzarella, emmenthal, gorgonzola and piquant provolone cheeses",
+        "price": 17
+    }
+]
+```
+
+### /carts
+
+#### post
+- **Description** : Add a new menu item or increment quantity in shopping cart.
+- **Required payload data** : email, pizzaName
+- **Required header data** : token
+- **Example payload**
+```
+{
+	"email": "string@string.com",
+	"pizzaName": "string"
+}
+```
+- **Success response** : 200
+- **Success response data**
+```
+{
+    "menuItems": [
+        {
+            "name": "VEGETARIANA",
+            "description": "Mozzarella, cultivated mushrooms, grilled vegetables",
+            "price": 12,
+            "quantity": 1
+        },
+        {
+            "name": "CAPRICCIOSA",
+            "description": "Mozzarella, ham, cultivated mushrooms",
+            "price": 14,
+            "quantity": 2
+        }
+    ],
+    "user": {
+        "email": "string@string.com",
+        "firstName": "string",
+        "lastName": "string",
+        "address": "string",
+        "city": "string"
+    }
+}
+```
+
+#### get
+- **Description** : Return cart for user.
+- **Required payload data** : email
+- **Required header data** : token
+- **Example payload**
+```
+http://localhost:3000/carts?email=string@string.com
+```
+- **Success response** : 200
+- **Success response data**
+```
+{
+    "menuItems": [
+        {
+            "name": "VEGETARIANA",
+            "description": "Mozzarella, cultivated mushrooms, grilled vegetables",
+            "price": 12,
+            "quantity": 1
+        },
+        {
+            "name": "CAPRICCIOSA",
+            "description": "Mozzarella, ham, cultivated mushrooms",
+            "price": 14,
+            "quantity": 2
+        }
+    ],
+    "user": {
+        "email": "string@string.com",
+        "firstName": "string",
+        "lastName": "string",
+        "address": "string",
+        "city": "string"
+    }
+}
+```
+
+#### delete
+- **Description** : Remove menu item form user cart or reduces quantity.
+- **Required payload data** : email, pizzaName
+- **Required header data** : token
+- **Example payload**
+```
+{
+	"email": "string@string.com",
+	"pizzaName": "string"
+}
+```
+- **Success response** : 200
+- **Success response data**
+```
+{
+    "menuItems": [
+        {
+            "name": "VEGETARIANA",
+            "description": "Mozzarella, cultivated mushrooms, grilled vegetables",
+            "price": 12,
+            "quantity": 1
+        },
+        {
+            "name": "CAPRICCIOSA",
+            "description": "Mozzarella, ham, cultivated mushrooms",
+            "price": 14,
+            "quantity": 2
+        }
+    ],
+    "user": {
+        "email": "string@string.com",
+        "firstName": "string",
+        "lastName": "string",
+        "address": "string",
+        "city": "string"
+    }
+}
+```
+### /order
+
+#### post
+- **Description** : Order the cart contents.  Remove user cart, accept payment with stripe and acknowledge with mailgun.
+- **Required payload data** : email, stripeToken
+- **Optional payload data** : none
+- **Required header data** : token
+- **Example payload**
+```
+{
+	"email": "string@string.com",
+	"stripeToken": "string"
+}
+```
+- **Success response** : 200
+- **Success response data**
+```
+{
+    "id": "string@string_string",
+    "amount": 40,
+    "date": 1541411771034,
+    "stripeToken": "tok_mastercard",
+    "menuItems": [
+        {
+            "name": "VEGETARIANA",
+            "description": "Mozzarella, cultivated mushrooms, grilled vegetables",
+            "price": 12,
+            "quantity": 1
+        },
+        {
+            "name": "CAPRICCIOSA",
+            "description": "Mozzarella, ham, cultivated mushrooms",
+            "price": 14,
+            "quantity": 2
+        }
+    ],
+    "user": {
+        "email": "string@gstring.com",
+        "firstName": "string",
+        "lastName": "string",
+        "address": "string",
+        "city": "string"
+    }
+}
+```
+
